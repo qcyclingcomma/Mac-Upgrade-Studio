@@ -3,76 +3,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>專業 Mac 升級服務 - SSD 升級 & macOS 更新</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <title>Mac Upgrade Studio｜Mac 重生計畫</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1d1d1f;
+            --secondary: #f5f5f7;
+            --accent: #0071e3;
+            --text-dark: #1d1d1f;
+            --text-light: #86868b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Devices Section */
+        .devices {
+            padding: 8rem 2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 700;
+        }
+
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .device-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .device-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .device-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .device-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            background: var(--secondary);
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-item p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Support Section */
+        .support {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .support-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .support-card h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .cta-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-item span {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-top: 4rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: #000;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                height: 80vh;
+            }
+            
+            .devices, .services, .support, .cta-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 導航欄 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Mac升級專家</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">服務項目</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pricing.html">價格表</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a></li>
-                </ul>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">MAC UPGRADE STUDIO</div>
+            <h1>Mac 重生計畫</h1>
+            <p class="subtitle">讓你的 Mac 跑得比新機還快</p>
+            <a href="#services" class="cta-button">探索升級方案</a>
         </div>
-    </nav>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <polyline points="7 13 12 18 17 13"></polyline>
+                <polyline points="7 6 12 11 17 6"></polyline>
+            </svg>
+        </div>
+    </section>
 
-    <!-- 英雄區域 -->
-    <section class="hero-section">
+    <!-- Devices Section -->
+    <section class="devices">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold">讓您的 Mac 重獲新生</h1>
-                    <p class="lead">專業 SSD 升級、macOS 更新、記憶體擴充服務</p>
-                    <p>為您的 iMac、MacBook、Mac mini 提供快速可靠的升級解決方案</p>
-                    <div class="mt-4">
-                        <a href="contact.html" class="btn btn-primary btn-lg">立即預約</a>
-                        <a href="services.html" class="btn btn-outline-light btn-lg">了解更多</a>
-                    </div>
+            <h2 class="section-title">專精機型</h2>
+            <div class="device-grid">
+                <div class="device-card">
+                    <div class="device-icon">💻</div>
+                    <h3>iMac</h3>
+                    <p>2009-2020 全系列<br>HDD 升級 SSD<br>效能提升 5-10 倍</p>
                 </div>
-                <div class="col-lg-6">
-                    <img src="images/mac-upgrade-hero.jpg" alt="Mac Upgrade" class="img-fluid rounded">
+                <div class="device-card">
+                    <div class="device-icon">🖥️</div>
+                    <h3>Mac mini</h3>
+                    <p>2010-2020 全系列<br>擴充記憶體 & SSD<br>完美工作站改造</p>
+                </div>
+                <div class="device-card">
+                    <div class="device-icon">⌨️</div>
+                    <h3>MacBook</h3>
+                    <p>2012-2017 可升級機型<br>SSD / 電池 / 散熱<br>延長使用壽命</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 服務特色 -->
-    <section class="py-5">
+    <!-- Services Section -->
+    <section class="services" id="services">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <h3>⚡ 速度提升 5倍</h3>
-                        <p>SSD 升級讓您的 Mac 開機和運行速度大幅提升</p>
-                    </div>
+            <h2 class="section-title">升級服務項目</h2>
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-icon">⚡</div>
+                    <h3>SSD 超高速升級</h3>
+                    <p>採用高品質 NVMe / SATA SSD，開機從 3 分鐘縮短至 15 秒，應用程式啟動速度提升 5-10 倍</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <h3>🛠️ 專業技術</h3>
-                        <p>豐富的 Mac 維修經驗，確保升級過程安全可靠</p>
-                    </div>
+                <div class="service-item">
+                    <div class="service-icon">🧠</div>
+                    <h3>記憶體擴充</h3>
+                    <p>升級至 16GB / 32GB，多工處理更流暢，專業軟體運行更順暢</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <h3>🔧 現場服務</h3>
-                        <p>快速完成升級，減少您的等待時間</p>
-                    </div>
+                <div class="service-item">
+                    <div class="service-icon">🔄</div>
+                    <h3>macOS 舊機升級</h3>
+                    <p>透過 OCLP 技術讓舊 Mac 安裝最新 macOS，享受新系統功能與安全更新</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🎯</div>
+                    <h3>效能優化</h3>
+                    <p>系統調校、散熱改善、風扇清潔，讓 Mac 保持最佳運作狀態</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💾</div>
+                    <h3>資料備份 / 救援</h3>
+                    <p>專業資料轉移、Time Machine 設定、損壞硬碟資料搶救</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🔧</div>
+                    <h3>系統轉移</h3>
+                    <p>完整複製舊機環境至新硬碟，無縫接軌，免重新設定</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <!-- Support Section -->
+    <section class="support">
+        <div class="container">
+            <h2 class="section-title">服務方式</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <div style="font-size: 4rem;">📦</div>
+                    <h3>郵寄升級</h3>
+                    <p>全台皆可寄送<br>專業包裝 · 保險運送<br>遠端溝通更新進度</p>
+                </div>
+                <div class="support-card">
+                    <div style="font-size: 4rem;">🚗</div>
+                    <h3>到府收送</h3>
+                    <p>特定地區提供<br>現場評估 · 當面說明<br>安心委託專業處理</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>開始你的 Mac 重生之旅</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">只需要告訴我們三件事</p>
+                
+                <div class="cta-grid">
+                    <div class="cta-item">
+                        <span>01</span>
+                        <h3>型號 / 年份</h3>
+                    </div>
+                    <div class="cta-item">
+                        <span>02</span>
+                        <h3>目前狀況</h3>
+                    </div>
+                    <div class="cta-item">
+                        <span>03</span>
+                        <h3>升級需求</h3>
+                    </div>
+                </div>
+
+                <p style="margin-top: 3rem; font-size: 1.1rem;">
+                    我們會在 24 小時內提供<br>
+                    <strong>最精準的升級建議與透明報價</strong>
+                </p>
+
+                <p class="tagline">「讓你的蘋果電腦，再次值得被喜愛」</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mac Upgrade Studio. All rights reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">專業 · 透明 · 值得信賴</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-item, .device-card, .support-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
