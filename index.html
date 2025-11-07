@@ -297,10 +297,93 @@
 
         /* Footer */
         footer {
-            padding: 3rem 2rem;
+            padding: 4rem 2rem 2rem;
             background: #000;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 2fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
@@ -309,8 +392,368 @@
                 height: 80vh;
             }
             
-            .devices, .services, .support, .cta-section {
+            .devices, .services, .support, .pricing, .testimonials, .contact-section {
                 padding: 4rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 2rem;
+            background: var(--secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            margin-bottom: 2rem;
+        }
+
+        .price-from {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            display: block;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 8rem 2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: var(--secondary);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-link.facebook {
+            background: #1877f2;
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-link.youtube {
+            background: #ff0000;
+        }
+
+        .social-link.line {
+            background: #00b900;
+        }
+
+        @media (max-width: 968px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .social-links {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -342,7 +785,7 @@
         <div class="hero-content">
             <div class="logo">MAC UPGRADE STUDIO</div>
             <h1>Mac 重生計畫</h1>
-            <p class="subtitle">讓你的 Mac 跑得像新機那樣快</p>
+            <p class="subtitle">讓你的 Mac 跑得跑得像新機那樣快</p>
             <a href="#services" class="cta-button">探索升級方案</a>
         </div>
         <div class="scroll-indicator">
@@ -380,7 +823,7 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">升級維修服務項目</h2>
+            <h2 class="section-title">升級服務項目</h2>
             <div class="service-list">
                 <div class="service-item">
                     <div class="service-icon">⚡</div>
@@ -395,7 +838,7 @@
                 <div class="service-item">
                     <div class="service-icon">🔄</div>
                     <h3>macOS 舊機升級</h3>
-                    <p>透過技術的破解讓舊 Mac 安裝最新 macOS，享受新系統功能與安全更新</p>
+                    <p>透過 OCLP 技術讓舊 Mac 安裝最新 macOS，享受新系統功能與安全更新</p>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🎯</div>
@@ -409,8 +852,8 @@
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🔧</div>
-                    <h3>資料備份 / 系統轉移</h3>
-                    <p>專業資料轉移，完整複製舊機環境至新硬碟，無縫接軌，免重新設定</p>
+                    <h3>系統轉移</h3>
+                    <p>完整複製舊機環境至新硬碟，無縫接軌，免重新設定</p>
                 </div>
             </div>
         </div>
@@ -428,49 +871,296 @@
                 </div>
                 <div class="support-card">
                     <div style="font-size: 4rem;">🚗</div>
-                    <h3>到府收送 / 親至工作室</h3>
+                   <h3>到府收送 / 親至工作室</h3>
                     <p>特定地區提供<br>現場評估 · 當面說明<br>安心委託專業處理</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Pricing Section -->
+    <section class="pricing">
         <div class="container">
-            <div class="cta-content">
-                <h2>開始你的 Mac 重生之旅</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">只需要告訴我們三件事</p>
-                
-                <div class="cta-grid">
-                    <div class="cta-item">
-                        <span>01</span>
-                        <h3>型號 / 年份</h3>
+            <h2 class="section-title" style="color: var(--text-dark);">升級價格參考</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem;">實際報價依機型與配置而定，以下為參考價格</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-badge">熱門</div>
+                    <h3>SSD 升級</h3>
+                    <div class="price">
+                        <span class="price-from">起</span>
+                        <span class="price-amount">NT$ 3,500</span>
                     </div>
-                    <div class="cta-item">
-                        <span>02</span>
-                        <h3>目前狀況</h3>
+                    <ul class="pricing-features">
+                        <li>✓ 256GB SSD：NT$ 3,500 起</li>
+                        <li>✓ 512GB SSD：NT$ 5,500 起</li>
+                        <li>✓ 1TB SSD：NT$ 8,500 起</li>
+                        <li>✓ 含系統轉移與測試</li>
+                        <li>✓ 原廠轉接座（iMac）</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">最超值</div>
+                    <h3>SSD + 記憶體升級</h3>
+                    <div class="price">
+                        <span class="price-from">起</span>
+                        <span class="price-amount">NT$ 6,800</span>
                     </div>
-                    <div class="cta-item">
-                        <span>03</span>
-                        <h3>升級需求</h3>
+                    <ul class="pricing-features">
+                        <li>✓ 512GB SSD + 16GB RAM</li>
+                        <li>✓ 效能提升 10 倍以上</li>
+                        <li>✓ 完整系統優化</li>
+                        <li>✓ 散熱清潔保養</li>
+                        <li>✓ 一年保固</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge">進階</div>
+                    <h3>macOS 升級</h3>
+                    <div class="price">
+                        <span class="price-from">起</span>
+                        <span class="price-amount">NT$ 2,000</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ OCLP 安裝最新系統</li>
+                        <li>✓ 驅動調校與優化</li>
+                        <li>✓ 資料完整保留</li>
+                        <li>✓ 遠端技術支援</li>
+                        <li>✓ 教學文件提供</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <p>💡 組合升級享優惠價｜免費檢測評估｜提供詳細報價單</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">客戶真實評價</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"2015 iMac 換了 SSD 後簡直重獲新生！開機從 3 分鐘變 15 秒，Photoshop 跑起來超順暢。工程師很專業，還教我很多保養技巧。"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">陳</div>
+                        <div>
+                            <div class="author-name">陳先生</div>
+                            <div class="author-info">iMac 27" 2015 | SSD 升級</div>
+                        </div>
                     </div>
                 </div>
 
-                <p style="margin-top: 3rem; font-size: 1.1rem;">
-                    我們會在 24 小時內提供<br>
-                    <strong>最精準的升級建議與透明報價</strong>
-                </p>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"本來想淘汰的 2014 Mac mini，升級後現在當工作主力機完全沒問題。價格透明合理，服務態度超好，強烈推薦！"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">林</div>
+                        <div>
+                            <div class="author-name">林小姐</div>
+                            <div class="author-info">Mac mini 2014 | SSD + 16GB RAM</div>
+                        </div>
+                    </div>
+                </div>
 
-                <p class="tagline">「讓你的蘋果電腦，再次值得被喜愛」</p>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"郵寄升級很方便，包裝非常仔細。過程中會主動回報進度，拿回來後還附贈詳細的檢測報告，很有保障感。"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">王</div>
+                        <div>
+                            <div class="author-name">王先生</div>
+                            <div class="author-info">MacBook Pro 2015 | SSD + 電池更換</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">立即諮詢</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem;">填寫表單，我們將在 24 小時內回覆您</p>
+            
+            <div class="contact-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">姓名 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">聯絡電話</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="model">Mac 型號 *</label>
+                            <select id="model" name="model" required>
+                                <option value="">請選擇</option>
+                                <option value="iMac">iMac</option>
+                                <option value="Mac mini">Mac mini</option>
+                                <option value="MacBook Pro">MacBook Pro</option>
+                                <option value="MacBook Air">MacBook Air</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">年份</label>
+                            <input type="text" id="year" name="year" placeholder="例：2015">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">升級需求 *</label>
+                        <select id="service" name="service" required>
+                            <option value="">請選擇</option>
+                            <option value="SSD 升級">SSD 升級</option>
+                            <option value="記憶體擴充">記憶體擴充</option>
+                            <option value="SSD + 記憶體">SSD + 記憶體</option>
+                            <option value="macOS 升級">macOS 升級 (OCLP)</option>
+                            <option value="資料救援">資料救援</option>
+                            <option value="效能優化">效能優化</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">詳細說明</label>
+                        <textarea id="message" name="message" rows="5" placeholder="請描述您的 Mac 目前狀況、使用需求，或任何想詢問的問題..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">送出諮詢</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>聯絡方式</h3>
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <div>
+                                <div class="info-label">Email</div>
+                                <a href="mailto:q.cycling.comma@gmail.com">q.cycling.comma@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">⏰</span>
+                            <div>
+                                <div class="info-label">服務時間</div>
+                                <div>週一至週六 10:00 - 19:00</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">💬</span>
+                            <div>
+                                <div class="info-label">回覆時間</div>
+                                <div>24 小時內回覆</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>關注我們</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link facebook" title="Facebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-link instagram" title="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-link youtube" title="YouTube">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <a href="https://lin.ee/GI5flYt" class="social-link line" title="LINE">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Mac Upgrade Studio. All rights reserved.</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">專業 · 透明 · 值得信賴</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>MAC UPGRADE STUDIO</h3>
+                    <p>讓你的蘋果電腦，再次值得被喜愛</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>服務項目</h4>
+                        <ul>
+                            <li><a href="#services">SSD 升級</a></li>
+                            <li><a href="#services">記憶體擴充</a></li>
+                            <li><a href="#services">macOS 升級</a></li>
+                            <li><a href="#services">資料救援</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>聯絡資訊</h4>
+                        <ul>
+                            <li><a href="mailto:q.cycling.comma@gmail.com">q.cycling.comma@gmail.com</a></li>
+                            <li>週一至週六 10:00-19:00</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>關注我們</h4>
+                        <div class="footer-social">
+                            <a href="#" title="Facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="#" title="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" title="YouTube">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <a href="#" title="LINE">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mac Upgrade Studio. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">專業 · 透明 · 值得信賴</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -503,11 +1193,37 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-item, .device-card, .support-card').forEach(el => {
+        document.querySelectorAll('.service-item, .device-card, .support-card, .pricing-card, .testimonial-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent('Mac 升級諮詢 - ' + data.model);
+            const body = encodeURIComponent(
+                `姓名: ${data.name}\n` +
+                `Email: ${data.email}\n` +
+                `電話: ${data.phone}\n` +
+                `Mac 型號: ${data.model}\n` +
+                `年份: ${data.year}\n` +
+                `升級需求: ${data.service}\n\n` +
+                `詳細說明:\n${data.message}`
+            );
+            
+            window.location.href = `mailto:q.cycling.comma@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            alert('感謝您的諮詢！您的預設郵件程式將會開啟，請確認並發送郵件。我們會在 24 小時內回覆您。');
+            this.reset();
         });
     </script>
 </body>
