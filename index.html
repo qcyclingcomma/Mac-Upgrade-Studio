@@ -628,12 +628,66 @@
             box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
         }
 
-        /* Checkbox Styles */
-        .checkbox-group {
+        /* 2025-12-18 V4.5 Custom Select Styles */
+        .custom-select-wrapper {
+            position: relative;
+            width: 100%;
+            user-select: none;
+        }
+
+        .select-trigger {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #888; /* Placeholder color by default */
+        }
+
+        .select-trigger.has-value {
+            color: var(--text-dark);
+        }
+
+        .select-trigger:hover {
+            border-color: #ccc;
+        }
+
+        .select-trigger .arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Rotate arrow when open */
+        .custom-select-wrapper.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .custom-options {
+            position: absolute;
+            display: none; /* Hidden by default */
+            top: 110%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .custom-select-wrapper.open .custom-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 0.8rem;
-            margin-top: 0.5rem;
         }
 
         .checkbox-item {
@@ -777,7 +831,7 @@
                 transform: scale(1);
             }
             
-            .checkbox-group {
+            .custom-select-wrapper.open .custom-options {
                 grid-template-columns: 1fr; /* Stack checkboxes on mobile */
             }
         }
@@ -855,7 +909,7 @@
 
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">升級，維修服務項目</h2>
+            <h2 class="section-title">升級服務項目</h2>
             <div class="service-list">
                 <div class="service-item">
                     <div class="service-icon">⚡</div>
@@ -879,7 +933,7 @@
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🔧</div>
-                    <h3>無法開機,黑屏 / 維修</h3>
+                    <h3>無法開機,黑屏｜維修</h3>
                     <p>電源供應器損毁，系統錯亂無法開機，GPU壞掉等等</p>
                 </div>
                 <div class="service-item">
@@ -1057,7 +1111,7 @@
                     </div>
 
                     <div style="margin-bottom: 0.5rem; color: var(--text-light); font-size: 0.85rem; margin-top: -0.5rem;">
-                        <span style="margin-right: 4px;">ℹ️</span>下面二資訊，在 MacBook 背面或是 iMac 底座的背面可以查到：
+                        <span style="margin-right: 4px;">ℹ️</span>在 MacBook 背面或是 iMac 底座的背面可以查到：
                     </div>
                     
                     <div class="form-row">
@@ -1073,34 +1127,41 @@
 
                     <div class="form-group">
                         <label>升級需求 (可複選) *</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="SSD 升級 + macOS 升級"> SSD 升級 + macOS 升級
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="記憶體擴充"> 記憶體擴充
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="SSD + 記憶體"> SSD + 記憶體
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="macOS 升級"> macOS 升級
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="資料救援"> 資料救援
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="效能優化"> 效能優化
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="買賣 Mac"> 買賣 Mac
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="維修"> 維修
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="service" value="其他"> 其他
-                            </label>
+                        <div class="custom-select-wrapper">
+                            <div class="select-trigger">
+                                <span class="trigger-text">請選擇升級需求 (可複選)...</span>
+                                <span class="arrow">▼</span>
+                            </div>
+                            
+                            <div class="custom-options">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="SSD 升級 + macOS 升級"> SSD 升級 + macOS 升級
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="記憶體擴充"> 記憶體擴充
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="SSD + 記憶體"> SSD + 記憶體
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="macOS 升級"> macOS 升級
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="資料救援"> 資料救援
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="效能優化"> 效能優化
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="買賣 Mac"> 買賣 Mac
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="維修"> 維修
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="service" value="其他"> 其他
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -1235,6 +1296,46 @@
             observer.observe(el);
         });
 
+        // V4.5: Custom Select Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const wrapper = document.querySelector('.custom-select-wrapper');
+            const trigger = wrapper.querySelector('.select-trigger');
+            const triggerText = wrapper.querySelector('.trigger-text');
+            const checkboxes = wrapper.querySelectorAll('input[type="checkbox"]');
+
+            // Toggle dropdown
+            trigger.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent closing immediately
+                wrapper.classList.toggle('open');
+            });
+
+            // Update text when checkboxes change
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTriggerText);
+            });
+
+            function updateTriggerText() {
+                const selected = Array.from(checkboxes)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
+
+                if (selected.length > 0) {
+                    triggerText.textContent = '已選擇：' + selected.join(', ');
+                    trigger.classList.add('has-value');
+                } else {
+                    triggerText.textContent = '請選擇升級需求 (可複選)...';
+                    trigger.classList.remove('has-value');
+                }
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!wrapper.contains(e.target)) {
+                    wrapper.classList.remove('open');
+                }
+            });
+        });
+
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1246,7 +1347,7 @@
             const selectedServices = formData.getAll('service');
             const serviceString = selectedServices.length > 0 ? selectedServices.join(', ') : '未選擇';
 
-            // Create mailto link with form data (Included new fields Model Code & EMC)
+            // Create mailto link with form data
             const subject = encodeURIComponent('Mac 升級諮詢 - ' + (data.model || '未填寫型號'));
             const body = encodeURIComponent(
                 `姓名: ${data.name}\n` +
@@ -1265,6 +1366,14 @@
             // Show success message
             alert('感謝您的諮詢！您的預設郵件程式將會開啟，請確認並發送郵件。我們會在 24 小時內回覆您。');
             this.reset();
+
+            // Reset custom dropdown text
+            const wrapper = document.querySelector('.custom-select-wrapper');
+            const triggerText = wrapper.querySelector('.trigger-text');
+            const trigger = wrapper.querySelector('.select-trigger');
+            triggerText.textContent = '請選擇升級需求 (可複選)...';
+            trigger.classList.remove('has-value');
+            wrapper.classList.remove('open');
         });
     </script>
 </body>
