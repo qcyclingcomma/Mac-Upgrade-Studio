@@ -628,6 +628,37 @@
             box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
         }
 
+        /* 2025-12-18 Added Checkbox Styles */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--accent);
+            background: rgba(0,113,227,0.05);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            accent-color: var(--accent);
+        }
+
         .form-group textarea {
             resize: vertical;
         }
@@ -745,6 +776,10 @@
             .pricing-card.featured {
                 transform: scale(1);
             }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr; /* Stack checkboxes on mobile */
+            }
         }
 
         @media (max-width: 768px) {
@@ -780,7 +815,6 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <div class="logo">MAC UPGRADE STUDIO</div>
@@ -796,7 +830,6 @@
         </div>
     </section>
 
-    <!-- Devices Section -->
     <section class="devices">
         <div class="container">
             <h2 class="section-title">專精機型</h2>
@@ -820,7 +853,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">升級服務項目</h2>
@@ -859,7 +891,6 @@
         </div>
     </section>
 
-    <!-- Support Section -->
     <section class="support">
         <div class="container">
             <h2 class="section-title">服務方式</h2>
@@ -878,7 +909,6 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
     <section class="pricing">
         <div class="container">
             <h2 class="section-title" style="color: var(--text-dark);">升級價格參考</h2>
@@ -942,7 +972,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <h2 class="section-title">客戶真實評價</h2>
@@ -986,7 +1015,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
             <h2 class="section-title">立即諮詢</h2>
@@ -1029,19 +1057,36 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="service">升級需求 *</label>
-                        <select id="service" name="service" required>
-                            <option value="">請選擇</option>
-                            <option value="SSD 升級">SSD 升級＋macOS 升級</option>
-                            <option value="記憶體擴充">記憶體擴充</option>
-                            <option value="SSD + 記憶體">SSD + 記憶體</option>
-                            <option value="macOS 升級">macOS 升級 </option>
-                            <option value="資料救援">資料救援</option>
-                            <option value="效能優化">效能優化</option>
-                            <option value="買賣Mac">買賣Mac</option>
-                            <option value="維修">維修</option>
-                            <option value="其他">其他</option>
-                        </select>
+                        <label>升級需求 (可複選) *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="SSD 升級 + macOS 升級"> SSD 升級 + macOS 升級
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="記憶體擴充"> 記憶體擴充
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="SSD + 記憶體"> SSD + 記憶體
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="macOS 升級"> macOS 升級
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="資料救援"> 資料救援
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="效能優化"> 效能優化
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="買賣 Mac"> 買賣 Mac
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="維修"> 維修
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="其他"> 其他
+                            </label>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -1059,7 +1104,7 @@
                             <span class="info-icon">📧</span>
                             <div>
                                 <div class="info-label">Email</div>
-                                <a href="qmacupgradestudio@gmail.com">qmacupgradestudio@gmail.com</a>
+                                <a href="mailto:qmacupgradestudio@gmail.com">qmacupgradestudio@gmail.com</a>
                             </div>
                         </div>
                         <div class="info-item">
@@ -1108,7 +1153,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1183,19 +1227,25 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
+            // Handle multiple checkboxes for service
+            // 'getAll' retrieves all values for the checkbox group named 'service'
+            const selectedServices = formData.getAll('service');
+            const serviceString = selectedServices.length > 0 ? selectedServices.join(', ') : '未選擇';
+
             // Create mailto link with form data
-            const subject = encodeURIComponent('Mac 升級諮詢 - ' + data.model);
+            const subject = encodeURIComponent('Mac 升級諮詢 - ' + (data.model || '未填寫型號'));
             const body = encodeURIComponent(
                 `姓名: ${data.name}\n` +
                 `Email: ${data.email}\n` +
                 `電話: ${data.phone}\n` +
                 `Mac 型號: ${data.model}\n` +
                 `年份: ${data.year}\n` +
-                `升級需求: ${data.service}\n\n` +
+                `升級需求: ${serviceString}\n\n` +
                 `詳細說明:\n${data.message}`
             );
             
-            window.location.href = `qmacupgradestudio@gmail.com?subject=${subject}&body=${body}`;
+            // Added 'mailto:' protocol here
+            window.location.href = `mailto:qmacupgradestudio@gmail.com?subject=${subject}&body=${body}`;
             
             // Show success message
             alert('感謝您的諮詢！您的預設郵件程式將會開啟，請確認並發送郵件。我們會在 24 小時內回覆您。');
