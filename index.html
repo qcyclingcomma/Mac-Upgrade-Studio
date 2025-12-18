@@ -628,7 +628,7 @@
             box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
         }
 
-        /* 2025-12-18 Added Checkbox Styles */
+        /* Checkbox Styles */
         .checkbox-group {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -1056,6 +1056,21 @@
                         </div>
                     </div>
 
+                    <div style="margin-bottom: 0.5rem; color: var(--text-light); font-size: 0.85rem; margin-top: -0.5rem;">
+                        <span style="margin-right: 4px;">ℹ️</span>在 MacBook 背面或是 iMac 底座的背面可以查到：
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="model_code">Mac 機型代碼 (Model)</label>
+                            <input type="text" id="model_code" name="model_code" placeholder="例：A1312">
+                        </div>
+                        <div class="form-group">
+                            <label for="emc_code">EMC 代碼</label>
+                            <input type="text" id="emc_code" name="emc_code" placeholder="例：2429">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label>升級需求 (可複選) *</label>
                         <div class="checkbox-group">
@@ -1228,23 +1243,23 @@
             const data = Object.fromEntries(formData);
             
             // Handle multiple checkboxes for service
-            // 'getAll' retrieves all values for the checkbox group named 'service'
             const selectedServices = formData.getAll('service');
             const serviceString = selectedServices.length > 0 ? selectedServices.join(', ') : '未選擇';
 
-            // Create mailto link with form data
+            // Create mailto link with form data (Included new fields Model Code & EMC)
             const subject = encodeURIComponent('Mac 升級諮詢 - ' + (data.model || '未填寫型號'));
             const body = encodeURIComponent(
                 `姓名: ${data.name}\n` +
                 `Email: ${data.email}\n` +
                 `電話: ${data.phone}\n` +
-                `Mac 型號: ${data.model}\n` +
+                `Mac 型號 (Type): ${data.model}\n` +
                 `年份: ${data.year}\n` +
+                `機型代碼 (Model): ${data.model_code || '未填寫'}\n` +
+                `EMC 代碼: ${data.emc_code || '未填寫'}\n` +
                 `升級需求: ${serviceString}\n\n` +
                 `詳細說明:\n${data.message}`
             );
             
-            // Added 'mailto:' protocol here
             window.location.href = `mailto:qmacupgradestudio@gmail.com?subject=${subject}&body=${body}`;
             
             // Show success message
